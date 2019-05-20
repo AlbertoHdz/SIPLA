@@ -15,12 +15,16 @@ class LoginController extends CI_Controller {
 		if ($this->session->has_userdata('isLogin')) 
 		{
 			// Regresar la pantalla de inicio
+			$this->load->view('headers');
 			$this->load->view('navbar');
+			$this->load->view('footer');
 
 		} else
 		{
 			// Regresar el login
+			$this->load->view('headers');
 			$this->load->view('login');
+			$this->load->view('footer');
 		}
 	}
 

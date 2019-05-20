@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Organizador - SIPLA</title>
-  <link rel="stylesheet" href="<?php echo base_url("public/css/bootstrap.min.css")?>">
-  <link rel="stylesheet" href="<?php echo base_url("public/css/style-login.css")?>">
-    <script src="<?php echo base_url("public/js/bootstrap.min.js")?>"></script>
-    <script src="<?php echo base_url("public/js/jquery.js")?>"></script>
-</head>
-<body>
   <style type="text/css">
     body{
       margin-top: 50px;
@@ -48,5 +38,3 @@
     </ul>
   </div>
 </nav>
-</body>
-</html>
