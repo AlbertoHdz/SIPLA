@@ -14,7 +14,7 @@
     <a class="navbar-brand" href="#">SIPLAS</a>
     <ul class="nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Crear una reunión</a>
+        <a class="nav-link"  href="<?php echo base_url();?>index.php/newReunion/index">Crear una reunión</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Registrar Participante</a>
