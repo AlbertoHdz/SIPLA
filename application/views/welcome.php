@@ -1,105 +1,125 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter holaaa</title>
-	<?php include 'headers.php';?>
+<div class="shadow bg-white col-md-10" style="margin: auto;">
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
 
-	<style type="text/css">
+        <div id="" class="carousel slide my-4" data-ride="carousel">
+          
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="<?php echo base_url('/public/images/reuniones6.jpg')?>" alt="Bienvenidos a SIPLA">
+            </div><!--
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+            </div>-->
+          </div>
+          
+        </div>
 
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="<?php echo base_url('/public/images/reuniones1.jpg')?>" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Intercambio de ideas</a>
+                </h4>
+                <h5>¿solo jefes?</h5>
+                <p class="card-text">Puedes crearse reuniones incluyendo a todo el personal y persona que desees que este presente en la reunion!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">★ ★ ★ ★ ☆</small>
+              </div>
+            </div>
+          </div>
 
-	body {
-		background-image: url(http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg);
-	    background-repeat: no-repeat;
-	    background-size:cover;
-	    background-position:center;
-	    position:relative;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="<?php echo base_url('/public/images/reuniones2.jpg')?>" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Comunicación instantanea</a>
+                </h4>
+                <h5>fácil y rápido!</h5>
+                <p class="card-text">No necesitas nada más, tan solo conexion de internet para conectarte a la reunion.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">★ ★ ★ ★ ☆</small>
+              </div>
+            </div>
+          </div>
 
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="<?php echo base_url('/public/images/reuniones3.jpg')?>" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Toma de desiciones</a>
+                </h4>
+                <h5>¿moverse de lugar?</h5>
+                <p class="card-text">Con esta modalidad todos pueden participar, sin necesidad de viajar para asistir a un lugar determinado!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">★ ★ ★ ★ ☆</small>
+              </div>
+            </div>
+          </div>
 
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="<?php echo base_url('/public/images/reuniones4.jpg')?>" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Crecimiento del proyecto</a>
+                </h4>
+                <h5>Sin limites!</h5>
+                <p class="card-text">Los miembros del equipo pueden aumentar su productividad, cada quien puede estar con las comodidades que quiera y en donde quiera para su mejor desempeño!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">★ ★ ★ ★ ☆</small>
+              </div>
+            </div>
+          </div>
 
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="<?php echo base_url('/public/images/reuniones5.jpg')?>" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">Desde donde quieras</a>
+                </h4>
+                <h5>¿No tienes tu computadora a la mano?</h5>
+                <p class="card-text">No importa el lugar que te encuentres, ni necesitas tu computadora a la mano, tan solo basta con que te conectes a internet y desde tu celular puedes entrar.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">★ ★ ★ ★ ☆</small>
+              </div>
+            </div>
+          </div>
 
-	#body {
-		margin: 0 15px 0 15px;
-	}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="<?php echo base_url('/public/images/reuniones7.jpg')?>" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">No importa el lugar</a>
+                </h4>
+                <h5>¿Fuera del pais?</h5>
+                <p class="card-text">No importa si estas en tu casa o fuera de tu estado! podrás acceder y reunirte con tu equipo en todo momento</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">★ ★ ★ ★ ☆</small>
+              </div>
+            </div>
+          </div>
 
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
+        </div>
+        <!-- /.row -->
 
-	#container {
-		background: #FFF;
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
-<body>
-
-<div id="container">
-	
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	  <div class="container">
-	    <li class="navbar-header">
-	      <p class="navbar-text navbar-right">cuenta de: <a href="#" class="navbar-link">Admin SIPLAS</a></p>
-	      <p><a class="dropdown-item" href="<?php echo base_url(); ?>index.php/logout">Cerrar sesión</a></p>
-	    </li>
-	  </div>
-	</nav>
-
-
-	<h1>Welcome to CodeIgniter!</h1>
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+      </div>
+    </div>
+  </div>
 </div>
-
-</body>
-</html>

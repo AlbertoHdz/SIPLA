@@ -18,6 +18,7 @@ class LoginController extends CI_Controller {
 			$this->load->helper('url');
 			$this->load->view('headers');
 			$this->load->view('navbar');
+			$this->load->view('welcome');
 			$this->load->view('footer');
 
 		} else

@@ -1,8 +1,9 @@
   <style type="text/css">
     body{
-      margin-top: 50px;
-      margin-left: 100px;
-      margin-right: 100px;
+      background-image: url(http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      overflow: scroll;
     }
   
   </style>
