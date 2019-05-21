@@ -11,7 +11,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse nav justify-content-center" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="#">SIPLAS</a>
+    <a class="navbar-brand" href="<?php echo base_url();?>">SIPLAS</a>
     <ul class="nav">
       <li class="nav-item active">
         <a class="nav-link"  href="<?php echo base_url();?>index.php/newReunion/index">Crear una reunión</a>
