@@ -10,10 +10,7 @@ body{
   background-position:center;
   position:relative;
 }
-a{
-  text-decoration:none;
-  color:#444444;
-}
+
 .login-reg-panel{
     position: relative;
     top: 50%;
@@ -36,10 +33,7 @@ a{
     z-index:0;
     box-shadow: 0 0 15px 9px #00000096;
 }
-.login-reg-panel input[type="radio"]{
-    position:relative;
-    display:none;
-}
+
 .login-reg-panel{
     color:#B8B8B8;
 }
@@ -140,8 +134,13 @@ a{
     letter-spacing: 1px;
     z-index: 99;
 }
-a{
-  text-decoration:none;
-  color:#2c7715;
-}
-    
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}    
