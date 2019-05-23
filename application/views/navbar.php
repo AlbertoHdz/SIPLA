@@ -22,7 +22,7 @@
             <li class="nav-item active">
               <a class=""  href="<?php echo base_url();?>index.php/newReunion/index">Crear una reunión</a>
             </li>
-            <li><a href="#">Listar Reuniones</a></li>
+            <li><a href="<?php echo base_url();?>index.php/newReunion/listarReuniones">Listar Reuniones</a></li>
           </ul>
         </div> 
       </li>
@@ -46,7 +46,10 @@
       </li>
       <li>
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin SIPLAS
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php
+            echo $this->session->userdata('usuario');
+          ?>
+           SIPLAS
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
             <li class="nav-item">
