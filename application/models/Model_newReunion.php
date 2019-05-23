@@ -24,10 +24,9 @@ class Model_newReunion extends CI_Model {
 		print $data['lugar'];
 		print $data['hora'];
 		print $data['estatus'];
-	//$consulta= "INSERT INTO reuniones(titulo,asunto) VALUES ('".$data['titulo']."','".$data['asunto']."')";
-	/*$consulta= "INSERT INTO reuniones(titulo,asunto,fecha,lugar,hora,estatus) VALUES ('".$data['titulo']."','".$data['asunto']."','".$data['fecha']."','".$data['lugar']."','".$data['hora']."',".$data['estatus'].")";*/
-   //$sql = $this->db->query($consulta);
-   //return $sql;
+	$consulta= "INSERT INTO reuniones(titulo,asunto,fecha,lugar,hora,estatus,idUsuario) VALUES ('".$data['titulo']."','".$data['asunto']."','".$data['fecha']."','".$data['lugar']."','".$data['hora']."',".$data['estatus'].",1)";
+   $sql=$this->db->query($consulta);
+  return $sql;
 	}
 
 	public function getAllReuniones(){

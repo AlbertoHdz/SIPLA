@@ -5,9 +5,11 @@
       background-attachment: fixed;
       overflow: scroll;
     }
-  
   </style>
-    <nav class="navbar navbar-expand-lg navbar-light shadow p-3 mb-1 bg-white rounded position ">
+    <nav class="navbar navbar-expand-lg navbar-light shadow p-3 mb-1 bg-white rounded position " style="margin-top: 30px;
+      margin-left: 50px;
+      margin-right: 50px;
+      margin-bottom: 100px;">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
