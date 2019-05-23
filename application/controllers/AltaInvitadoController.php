@@ -9,7 +9,11 @@ class AltaInvitadoController extends CI_Controller {
     
     public function index(){
         if ($this->session->has_userdata('isLogin')){
+            $this->load->view('headers');
+            $this->load->view('navbar');
             $this->load->view('AltaInvitado');
+            $this->load->view('footer');
+            
         }else{
             redirect(base_url(), 'refresh');
         }
