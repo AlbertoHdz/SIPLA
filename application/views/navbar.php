@@ -16,27 +16,51 @@
   <div class="collapse navbar-collapse nav justify-content-center" id="navbarTogglerDemo01">
     <a class="navbar-brand" href="<?php echo base_url();?>">SIPLAS</a>
     <ul class="nav">
-      <li class="nav-item active">
-        <a class="nav-link"  href="<?php echo base_url();?>index.php/newReunion/index">Crear una reunión</a>
+      <li>
+         <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Reuniones
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li class="nav-item active">
+              <a class=""  href="<?php echo base_url();?>index.php/newReunion/index">Crear una reunión</a>
+            </li>
+            <li><a href="<?php echo base_url();?>index.php/newReunion/listarReuniones">Listar Reuniones</a></li>
+          </ul>
+        </div> 
       </li>
-      <li class="nav-item">
-      <a class="nav-link" href="<?php echo base_url(); ?>index.php/altaInvitado">Registrar Participante</a>
+      <li>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Usuarios
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="<?php echo base_url(); ?>index.php/altaInvitado">Registrar usuario</a>
+            </li>
+            <li class="">
+              <a href="#">Listar todos los usuarios</a>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Invitar a participante</a>
-      </li>
+      
        <li class="nav-item">
         <a class="nav-link" href="#">Agregar más...</a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#">Agregar más...</a>
+      <li>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php
+            echo $this->session->userdata('usuario');
+          ?>
+           SIPLAS
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a class="dropdown-item nav-link" href="<?php echo base_url(); ?>index.php/logout">Cerrar sesión</a>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li class="nav-item">
-         <a  class="nav-link">Admin SIPLAS</a>
-      </li>
-      <li class="nav-item">
-        <a class="dropdown-item nav-link" href="<?php echo base_url(); ?>index.php/logout">Cerrar sesión</a>
-      </li>
+      
       
     </ul>
   </div>

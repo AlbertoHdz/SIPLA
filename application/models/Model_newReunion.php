@@ -2,6 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_newReunion extends CI_Model { 
+	/*definición de atributos*/
+	private $idReunion;
+	private $titulo;
+	private $asunto;
+	private $fecha;
+	private $lugar;
+	private $hora;
+	private $estatus;
+	private $idUsuario;
+
+
    public function __construct() {
       parent::__construct();
    }
@@ -16,6 +27,11 @@ class Model_newReunion extends CI_Model {
 	$consulta= "INSERT INTO reuniones(titulo,asunto,fecha,lugar,hora,estatus,idUsuario) VALUES ('".$data['titulo']."','".$data['asunto']."','".$data['fecha']."','".$data['lugar']."','".$data['hora']."',".$data['estatus'].",1)";
    $sql=$this->db->query($consulta);
   return $sql;
+	}
+
+	public function getAllReuniones(){
+		$query = $this->db->get('reuniones');
+		return $query->result_array();//row_array();
 	}
 }
 ?>

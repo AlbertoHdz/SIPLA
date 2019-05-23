@@ -6,6 +6,14 @@ class newReunion extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Model_newReunion','reunion',true);
+		if (!$this->session->has_userdata('isLogin')) 
+		{
+			// Regresar el login
+			$this->load->view('headers');
+			$this->load->view('login');
+			$this->load->view('footer');
+		}
 	}
 
 	public function index()
@@ -44,6 +52,17 @@ class newReunion extends CI_Controller {
 		
           //echo("titulo: ".$titulo."lugar: ".$lugar."fecha: ".$fecha."hora: ".$hora."asunto: ".$asunto);
 	}
+
+	public function listarReuniones(){
+		// Muestra el contenido
+		$this->load->view('headers');
+		$this->load->view('navbar');
+		$datos['reuniones'] = $this->reunion->getAllReuniones();
+		$this->load->view('reuniones',$datos);
+		$this->load->view('footer');
+	}
+
+
 }
 
 ?>
