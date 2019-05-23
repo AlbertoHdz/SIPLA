@@ -59,3 +59,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = "LoginController/login";
 $route['logout'] = "LoginController/logout";
 
+/* Alta Invitado */
+$route['altaInvitado'] = "AltaInvitadoController";
+$route['createInvitado'] = "AltaInvitadoController/createInvitado";
+$route['verificaUsuario'] = "AltaInvitadoController/verificaUsuario";

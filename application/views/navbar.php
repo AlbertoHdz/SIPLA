@@ -20,7 +20,7 @@
         <a class="nav-link"  href="<?php echo base_url();?>index.php/newReunion/index">Crear una reunión</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Registrar Participante</a>
+      <a class="nav-link" href="<?php echo base_url(); ?>index.php/altaInvitado">Registrar Participante</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Invitar a participante</a>
