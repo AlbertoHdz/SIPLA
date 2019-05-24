@@ -1,11 +1,4 @@
-  <style type="text/css">
-    body{
-      background-image: url(http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg);
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      overflow: scroll;
-    }
-  </style>
+
     <nav class="navbar navbar-expand-lg navbar-light shadow p-3 mb-1 bg-white rounded position " style="margin-top: 30px;
       margin-left: 50px;
       margin-right: 50px;
@@ -65,3 +58,23 @@
     </ul>
   </div>
 </nav>
+<div class="modal fade" id="modalLoading" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cargando...</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -9,15 +9,26 @@ class reunionUsuarioController extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('reunionUsuario','reunUs',true);
-		$this->model->helper('form');
+	}
+
+	public function index(){
+		echo "HOola";
 	}
 
 	public function getAll(){
-		$this->reunUs->getAll();
+		$datos = $this->reunUs->getAll();
+		echo json_encode($datos);
+	}
+
+	public function getUsuariosReunion(){
+		$id = $_GET['idReunion'];
+		$datos = $this->reunUs->getUsuariosReunion($id);
+		echo json_encode($datos);
+		//return json_encode($datos);
 	}
 
 	public function hello(){
-		return "hello to you";
+		echo "hello to you";
 	}
 }
 

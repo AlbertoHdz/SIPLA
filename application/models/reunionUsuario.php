@@ -16,16 +16,16 @@ class reunionUsuario extends CI_Model{
 		//$sql = 'INSERT INTO `relReunionUsuario` (`idReunion`, `idUsuario`) VALUES ('1', '1');';
 	}
 
-	public function getUsuarios(){
-		$this->db->where("idReunion",$this->input->get('idReunion'));
-		$query->$this->db->get('relReunionUsuario');
-
-		return $query->result();
+	public function getUsuariosReunion($idReunion){
+		//$this->db->where("idReunion",$idReunion);
+		$query = $this->db->query('SELECT u.*,rl.nombre FROM usuarios as u INNER JOIN relReunionUsuario as rn on rn.idUsuario = u.idUsuario INNER JOIN roles as rl on rl.idRol = u.idRol WHERE rn.idReunion = '.$idReunion);
+		//print_r($query->result_array());
+		return $query->result_array();
 	}
 
 	public function getAll(){
-		$this->db->get('relReunionUsuario');
-		return $query->result();
+		$query = $this->db->query('SELECT u.*,rl.nombre FROM usuarios as u INNER JOIN relReunionUsuario as rn on rn.idUsuario = u.idUsuario INNER JOIN roles as rl on rl.idRol = u.idRol');
+		return $query->result_array();
 	}
 } 
 

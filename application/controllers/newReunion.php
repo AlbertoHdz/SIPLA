@@ -10,9 +10,7 @@ class newReunion extends CI_Controller {
 		if (!$this->session->has_userdata('isLogin')) 
 		{
 			// Regresar el login
-			$this->load->view('headers');
-			$this->load->view('login');
-			$this->load->view('footer');
+			redirect(base_url(),'refresh');
 		}
 	}
 
@@ -57,7 +55,12 @@ class newReunion extends CI_Controller {
 		// Muestra el contenido
 		$this->load->view('headers');
 		$this->load->view('navbar');
-		$datos['reuniones'] = $this->reunion->getAllReuniones();
+		$datos;
+		if($this->session->userdata('idRol') != 3){
+			$datos['reuniones'] = $this->reunion->getAllReuniones();
+		}else{
+			$datos['reuniones'] = $this->reunion->getReunionesUsuario($this->session->userdata('idUsuario')); 
+		}
 		$this->load->view('reuniones',$datos);
 		$this->load->view('footer');
 	}

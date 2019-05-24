@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class userModel extends CI_Model{
+class UserModel extends CI_Model{
 	/*definición de atributos*/
 	private $idUsuario;
 	private $usuario;
@@ -33,6 +33,25 @@ class userModel extends CI_Model{
 		{
 			return null;
 		}
+	}
+
+	public function exists(){
+		$this->db->where('usuario', $this->input->get('usuario'));
+		$query = $this->db->get('usuarios');
+		if($query->num_rows() == 1){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	public function create(){
+		$data = array(
+			'usuario' => $this->input->post("usuario"),
+			'password' => $this->input->post("password"),
+			'idRol' => (int)$this->input->post("idRol")
+		);
+		$this->db->insert("usuarios",$data);
 	}
 
 }

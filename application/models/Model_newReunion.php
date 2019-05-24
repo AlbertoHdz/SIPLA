@@ -33,5 +33,18 @@ class Model_newReunion extends CI_Model {
 		$query = $this->db->get('reuniones');
 		return $query->result_array();//row_array();
 	}
+
+	public function getReunionesUsuario($idUsuario){
+		//$this->db->select('*');//,reuniones.username,tbl_user.userid,tbl_usercategory.typee
+		//$this->db->from('reuniones');
+		//$this->db->join('relReunionUsuario','relReunionUsuario.idUsuario=reuniones.idUsuario');
+		//$this->db->where('relReunionUsuario.idUsuario',$idUsuario);
+		$query=$this->db->query('SELECT rn.*
+			FROM reuniones AS rn
+			INNER JOIN relReunionUsuario as ru on rn.idReunion = ru.idReunion
+			INNER JOIN usuarios as u on ru.idUsuario = u.idUsuario
+			Where u.idUsuario ='.$idUsuario);
+		return $query->result_array();
+	}
 }
 ?>

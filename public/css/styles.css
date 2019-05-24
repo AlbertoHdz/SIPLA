@@ -1,3 +1,11 @@
+body{
+  background-image: url(./../images/fondo.jpg);
+  /*url(http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg);*/
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: scroll;
+}
+
 .well{
 	min-height: 20px;
 	padding: 19px;
