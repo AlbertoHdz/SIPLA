@@ -1,4 +1,5 @@
 <script>
+	var idUser = <?php echo $this->session->userdata('idRol');?>;
 	$(document).ready(function(){
 		$(".verInvitadosReunion").on("click",function(){
 			var cls = $(this).attr('data-target');
@@ -25,8 +26,9 @@
 				}).done(function(data){
 					$("#modalLoading").modal('hide');
 					data = JSON.parse(data);
-					//console.log(data);
-					var cont = '<tr><th>Usuario</th><th>Tipo de usuario</th><th>confirmó asistencia</th><th>Acciones</th></tr>';
+					//tabla de usuarios
+					
+					var cont = '<tr><th>Usuario</th><th>Tipo de usuario</th><th>confirmó fecha/hora</th><th>Acciones</th></tr>';
 					if(data.length == 0)
 						$("#tablaInvitados"+idr).html('<div class="alert alert-info">No hay usuarios convocados a esta reunion</div>');
 					for (var i = 0; i < data.length; i++) {
@@ -39,20 +41,92 @@
 						}else{
 							cont += "<td>Si</td>";
 						}
-						<?php
-							if($this->session->userdata('idRol') == 1){
-						?>
-						cont += "<button class='btn eliminarusuario' data-target='"+row.idUsuario+"-"+idr+"><span class='glyphicon glyphicon-trash'></span></button>";
-						<?php
-							}
-						?>
+						
+						if(idUser == 1 && idUser != row.idUsuario){
+							cont += "<td><button class='btn btn-danger eliminarusuario' data-info='"+row.idUsuario+"-"+idr+"'>Quitar<span class='glyphicon glyphicon-trash'></span></button></td>";
+						}
 						cont += "</tr>";
+
 					}
 					
 					$("#tablaInvitados"+idr).html(cont);
+					
+				});
+				$.ajax({
+					url:"<?php echo base_url();?>index.php/AltaInvitadoController/getUsuarios",
+					type:"GET"
+				}).done(function(data){
+					data = JSON.parse(data);
+					var combo ="";
+					for (var i = 0; i < data.length; i++) {
+						var row = data[i];
+						combo += "<option value='"+row.idUsuario+"'>"+row.usuario+"</option>";
+					}
+					$("#comboUsuarios"+idr).html(combo);
 				});
 			}
-		})
+		});
+
+		$(".invitarUsuario").on("click", function() {
+			var idR = $(this).attr('data-reunion');
+			var cu = $("#comboUsuarios"+idR).val();
+			$.ajax({
+				url:"<?php echo base_url();?>index.php/reunionUsuarioController/agregarInvitadoReunion",
+				type: "POST",
+				data:{idUsuario:cu,idReunion:idR},
+				beforeSend: function(){
+					$("#modalLoading").modal('show');
+				}
+			}).done(function(data){
+				$("#modalLoading").modal('hide');
+				if(data){
+					swal('Excelente','El usuario ha sido invitado','success');
+				}else{
+					swal('Ups!','ha ocurrido un error','danger');
+				}
+				$("#invitadosReunion"+idR).collapse('hide');
+			});
+		});
+
+		$(document).off("click",".eliminarusuario");
+		$(document).on("click",".eliminarusuario",function(){
+			var dur = $(this).attr("data-info");
+			swal({
+				  title: "¿Sacar usuario de esta reunion?",
+				  text: "Esta acción no se puede deshacer, pero lo puede volver a invitar!",
+				  icon: "warning",
+				  buttons: {
+				  	cancel: "No",
+				  	Si: true,
+				  },
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				  	$.ajax({
+				  		url:"<?php echo base_url();?>index.php/reunionUsuarioController/quitarUsuarioReunion",
+				  		type: "POST",
+				  		data:{idUsuario:dur.split('-')[0],idReunion:dur.split('-')[1]},
+				  		beforeSend: function(){
+				  			$("#modalLoading").modal("show");
+				  		}
+				  	}).done(function(data){
+				  		$("#modalLoading").modal("hide");
+				  		if(data){
+				  			swal("Se ha quitado correctamente", {
+						      icon: "success",
+						    });
+				  		}else{
+				  			swal("Ha ocurrido un error", {
+						      icon: "danger",
+						    });
+				  		}
+				  		$("#invitadosReunion"+dur.split('-')[1]).collapse('hide');
+				  	});
+				    
+				  }
+				});
+		});
 	});
 </script>
 <div class="shadow bg-white col-md-10" style="margin: auto;">
@@ -108,9 +182,21 @@
 						    <?php
 						    	if($this->session->userdata('idRol') != 3){
 						    		?>
-						    		<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#modalInvitarUsuario" aria-expanded="false" aria-controls="">
+						    		<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#formAgregarInvitados<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
 									  Añadir participante
 									</button>
+									<div class="collapse" id="formAgregarInvitados<?php echo $reunion['idReunion']; ?>">
+									  	<div class="well">
+											<div class="form-inline">
+											  <div class="form-group">
+											    <label for="comboUsuarios<?php echo $reunion['idReunion']; ?>">Usuario: </label>
+											    <select type="text" class="form-control comboUsuarios" id="comboUsuarios<?php echo $reunion['idReunion']; ?>" placeholder="seleccione un usuario"></select>
+											  </div>
+											  
+											  <button type="button" class="btn btn-primary invitarUsuario" data-reunion="<?php echo $reunion['idReunion']; ?>">invitar</button>
+											</div>
+										</div>
+									</div>
 						    		<?php
 						    	}
 						    ?>

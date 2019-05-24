@@ -28,5 +28,10 @@ class AltaInvitadoController extends CI_Controller {
         $exists = $this->user->exists();
         echo $exists;
     }
+
+    public function getUsuarios(){
+        $query = $this->user->getUsuarios();
+        echo json_encode($query);
+    }
 }
 ?>

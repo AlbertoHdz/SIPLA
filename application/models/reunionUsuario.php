@@ -12,8 +12,11 @@ class reunionUsuario extends CI_Model{
 		parent::__construct();
 	}
 
-	public function agregarUsuario(){
-		//$sql = 'INSERT INTO `relReunionUsuario` (`idReunion`, `idUsuario`) VALUES ('1', '1');';
+	public function agregarUsuario($idUsuario,$idReunion){
+		$sql = "INSERT INTO `relReunionUsuario` (`idReunion`, `idUsuario`,`confirma`) VALUES ('$idReunion', '$idUsuario','0');";
+		$query = $this->db->query($sql);
+		echo $query;
+		return ($this->db->affected_rows() != 1) ? false : true;
 	}
 
 	public function getUsuariosReunion($idReunion){
@@ -26,6 +29,18 @@ class reunionUsuario extends CI_Model{
 	public function getAll(){
 		$query = $this->db->query('SELECT u.*,rl.nombre FROM usuarios as u INNER JOIN relReunionUsuario as rn on rn.idUsuario = u.idUsuario INNER JOIN roles as rl on rl.idRol = u.idRol');
 		return $query->result_array();
+	}
+
+	public function existeUsuario($idUsuario,$idReunion){
+		$query = $this->db->query('SELECT COUNT(*) as "existe" FROM `relReunionUsuario` as run WHERE run.idUsuario = '.$idUsuario.' and run.idReunion = '.$idReunion);
+		return $query->row();
+	}
+
+	public function eliminarUsuarioReunion($idUsuario,$idReunion)
+	{
+		$sql = "DELETE FROM `relReunionUsuario` where idReunion = ".$idReunion." and idUsuario = ".$idUsuario." ";
+		$query = $this->db->query($sql);
+		return ($this->db->affected_rows() > 0) ? true : false;
 	}
 } 
 

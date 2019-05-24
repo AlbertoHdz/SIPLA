@@ -54,6 +54,12 @@ class UserModel extends CI_Model{
 		$this->db->insert("usuarios",$data);
 	}
 
+	public function getUsuarios()
+	{
+		$query = $this->db->get('usuarios');
+		return $query->result_array();
+	}
+
 }
 
 ?>
