@@ -176,6 +176,16 @@
 					    <button class="btn btn-primary verInvitadosReunion" type="button" data-toggle="collapse" data-target="#invitadosReunion<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  ver invitados a reunion
 						</button>
+						<?php
+						    	if($this->session->userdata('idRol') != 1){
+						    		?>
+						<button class="btn btn-primary verInvitadosReunion" type="button">
+						  Confirmar mi asistencia
+						</button>
+						<button class="btn btn-primary verInvitadosReunion" type="button">
+						  Establecer fecha y horario 
+						</button>
+						<?php }  ?>
 						<div class="collapse" id="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  <div class="well">
 						    <p>Lista de los usuario en esta reunion</p>

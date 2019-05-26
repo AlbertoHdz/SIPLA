@@ -15,12 +15,13 @@ class LoginController extends CI_Controller {
 		if ($this->session->has_userdata('isLogin')) 
 		{
 			// Regresar la pantalla de inicio
-			$this->load->helper('url');
+			
+				$this->load->helper('url');
 			$this->load->view('headers');
 			$this->load->view('navbar');
 			$this->load->view('welcome');
 			$this->load->view('footer');
-
+	
 		} else
 		{
 			// Regresar el login
@@ -45,8 +46,8 @@ class LoginController extends CI_Controller {
 		} else
 		{
 			// Guardamos la información del usuario en sesión
-			$info_user = array('idUsuario' => $user->idUsuario, 'usuario' => $user->usuario, 'idRol' => $user->idRol, "isLogin" => true);
-
+			$rol = $this->user->consultar_rol($user->idRol);
+			$info_user = array('idUsuario' => $user->idUsuario, 'usuario' => $user->usuario, 'idRol' => $user->idRol, "isLogin" => true,'roles'=>$rol->nombre);
 			$this->session->set_userdata($info_user);
 			redirect(base_url(), 'refresh');
 		}

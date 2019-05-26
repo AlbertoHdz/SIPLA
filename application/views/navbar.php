@@ -14,14 +14,17 @@
           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Reuniones
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
+            <?php if($this->session->userdata('roles')==='Admin'){ ?>
             <li class="nav-item active">
               <a class=""  href="<?php echo base_url();?>index.php/newReunion/index">Crear una reunión</a>
             </li>
+          <?php } ?>
             <li><a href="<?php echo base_url();?>index.php/newReunion/listarReuniones">Listar Reuniones</a></li>
           </ul>
         </div> 
       </li>
       <li>
+        <?php if($this->session->userdata('roles')==='Admin'){ ?>
         <div class="dropdown">
           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Usuarios
           <span class="caret"></span></button>
@@ -34,6 +37,7 @@
             </li>
           </ul>
         </div>
+        <?php } ?>
       </li>
       
        <li class="nav-item">
