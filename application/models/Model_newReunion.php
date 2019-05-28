@@ -39,7 +39,7 @@ class Model_newReunion extends CI_Model {
 		//$this->db->from('reuniones');
 		//$this->db->join('relReunionUsuario','relReunionUsuario.idUsuario=reuniones.idUsuario');
 		//$this->db->where('relReunionUsuario.idUsuario',$idUsuario);
-		$query=$this->db->query('SELECT rn.*,u.confirmar
+		$query=$this->db->query('SELECT rn.*,ru.confirma
 			FROM reuniones AS rn
 			INNER JOIN relReunionUsuario as ru on rn.idReunion = ru.idReunion
 			INNER JOIN usuarios as u on ru.idUsuario = u.idUsuario

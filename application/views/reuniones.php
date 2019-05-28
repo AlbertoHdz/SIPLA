@@ -27,7 +27,6 @@
 					$("#modalLoading").modal('hide');
 					data = JSON.parse(data);
 					//tabla de usuarios
-					
 					var cont = '<tr><th>Usuario</th><th>Tipo de usuario</th><th>confirmó fecha/hora</th><th>Acciones</th></tr>';
 					if(data.length == 0)
 						$("#tablaInvitados"+idr).html('<div class="alert alert-info">No hay usuarios convocados a esta reunion</div>');
@@ -36,7 +35,7 @@
 						cont += "<tr>";
 						cont += "<td>"+row.usuario+"</td>";
 						cont += "<td>"+row.nombre+"</td>";
-						if(row.confirmar){
+						if(row.confirma == 0){
 							cont += "<td>No</td>";
 						}else{
 							cont += "<td>Si</td>";
@@ -154,7 +153,36 @@
 		
 		$(document).off("click",".confirmarFechaReunion");
 		$(document).on("click",".confirmarFechaReunion",function(){
-			swal("clicked");
+			var idReunion = $(this).attr('data-reunion');
+			var fecha = $("#fechaProp"+idReunion).val();
+			var hora = $("#horaPropuesta"+idReunion).val();
+			var lugar = $("#lugarPropuesta"+idReunion).val();
+			if(fecha == "" || hora == "" || lugar == ""){
+				swal("OPS!","rellene todos los campos","warning");
+				return false;
+			}
+			$.ajax({
+				url:"<?php echo base_url();?>index.php/propuestasController/agregarPropuesta",
+				data:{idReunion:idReunion,fechaPropuesta:fecha,horaPropuesta:hora,lugarPropuesta:lugar},
+				type:"post",
+				beforeSend: function(){
+					$("#modalLoading").modal('show');
+				}
+			}).done(function(data){
+				$("#modalLoading").modal('hide');
+				if(data){
+		  			swal("Se ha enviado correctamente", {
+				      icon: "success",
+				    });
+		  		}else{
+		  			swal("Ha ocurrido un error", {
+				      icon: "danger",
+				    });
+		  		}
+		  		$("#fechaPropuesta"+idReunion).collapse('hide');
+		  		$("#btnfechaPropuesta"+idReunion).hide();
+		  		$("#btnAsistencia"+idReunion).hide();
+			});
 		});
 	});
 </script>
@@ -206,17 +234,6 @@
 						  ver invitados a reunion
 						</button>
 
-				
-						<?php
-						    	if($this->session->userdata('idRol') != 1){
-						    		?>
-						<button class="btn btn-primary verInvitadosReunion" type="button">
-						  Confirmar mi asistencia
-						</button>
-						<button class="btn btn-primary verInvitadosReunion" type="button">
-						  Establecer fecha y horario 
-						</button>
-						<?php }  ?>
 						<div class="collapse" id="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  <div class="well">
 						    <p>Lista de los usuario en esta reunion</p>
@@ -263,10 +280,10 @@
 									  Cambiar el rango de fechas
 									</button>
 									<button class="btn btn-danger " type="button" data-toggle="collapse" data-target="#terminarReunion<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="terminarReunion<?php echo $reunion['idReunion']; ?>">
-						  Terminar reunion
-						</button>
+									  Terminar reunion
+									</button>
 						
-						<div class="collapse" id="terminarReunion<?php echo $reunion['idReunion']; ?>">
+									<div class="collapse" id="terminarReunion<?php echo $reunion['idReunion']; ?>">
 									  	<div class="well">
 											<div class="form-inline">
 											  Esta seguro de querer terminar/cancelar la reunión
@@ -301,13 +318,13 @@
 										</div>
 									  </div>
 						    		<?php
-		    				}else if(isset($reunion['confirmar'])) if($reunion['confirmar'] == 0){
+		    				}else if(isset($reunion['confirmar'])) if($reunion['confirmar'] == 0 && $reunion['idUsuario'] != $this->session->userdata('idUsuario')){
 		    					?>
 		    					<div>
-		    					<button class="btn btn-primary confirmarFechaReunion" type="button" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+		    					<button class="btn btn-primary confirmarFechaReunion" type="button" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" id="btnAsistencia<?php echo $reunion['idReunion']?>" aria-controls="">
 									  Confirmar asistencia
 									</button>
-						    		<button class="btn btn-primary fechaPropuesta" type="button" data-toggle="collapse" data-target="#fechaPropuesta<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+						    		<button class="btn btn-primary fechaPropuesta" type="button" data-toggle="collapse" data-target="#fechaPropuesta<?php echo $reunion['idReunion']; ?>" id="btnfechaPropuesta<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
 									  Establecer fecha/hora
 									</button>
 									<div class="collapse" id="fechaPropuesta<?php echo $reunion['idReunion']; ?>">
@@ -316,10 +333,10 @@
 										    <?php echo form_open('newReunion/fechaPropuesta'); ?>
 											<div class="">
 												<h3>Ingresa una fecha que si puedas</h3>
-												<label class="form-label" for="fechaPropuesta<?php echo $reunion['idReunion']; ?>">Fecha:</label>
-												<input type="date" class="form-control" placeholder="fecha tentativa" name="fechaPropuesta" id="fechaPropuesta<?php echo $reunion['idReunion']; ?>">
-												<label class="form-label" for="HoraPropuesta<?php echo $reunion['idReunion']; ?>">Hora:</label>
-												<input type="time" class="form-control" placeholder="Hora tentativa" name="HoraPropuesta" id="HoraPropuesta<?php echo $reunion['idReunion']; ?>">
+												<label class="form-label" for="fechaProp<?php echo $reunion['idReunion']; ?>">Fecha:</label>
+												<input type="date" class="form-control" placeholder="fecha tentativa" name="fechaPropuesta" id="fechaProp<?php echo $reunion['idReunion']; ?>">
+												<label class="form-label" for="horaPropuesta<?php echo $reunion['idReunion']; ?>">Hora:</label>
+												<input type="time" class="form-control" placeholder="Hora tentativa" name="HoraPropuesta" id="horaPropuesta<?php echo $reunion['idReunion']; ?>">
 												<label class="form-label" for="lugarPropuesta<?php echo $reunion['idReunion']; ?>">Lugar</label>
 												<input class="form-control" name="lugarPropuesta" id="lugarPropuesta<?php echo $reunion['idReunion']; ?>" value="">
 												<hr>

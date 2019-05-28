@@ -28,7 +28,7 @@ class reunionUsuario extends CI_Model{
 
 	public function getUsuariosReunion($idReunion){
 		//$this->db->where("idReunion",$idReunion);
-		$query = $this->db->query('SELECT u.*,rl.nombre FROM usuarios as u INNER JOIN relReunionUsuario as rn on rn.idUsuario = u.idUsuario INNER JOIN roles as rl on rl.idRol = u.idRol WHERE rn.idReunion = '.$idReunion);
+		$query = $this->db->query('SELECT u.idUsuario,u.usuario,rl.*,ru.confirma FROM reuniones AS rn INNER JOIN relReunionUsuario as ru on rn.idReunion = ru.idReunion INNER JOIN usuarios as u on ru.idUsuario = u.idUsuario INNER JOIN roles as rl on rl.idRol = u.idRol Where rn.idReunion = '.$idReunion);
 		//print_r($query->result_array());
 		return $query->result_array();
 	}
@@ -54,7 +54,7 @@ class reunionUsuario extends CI_Model{
 	public function confirmacion($idUsuario,$idReunion)
 	{
 		$sql = "UPDATE `relReunionUsuario` SET `confirma`=1 WHERE `idReunion`= $idReunion AND `idUsuario`= $idUsuario";
-		$this->db->query($sql);
+		$query = $this->db->query($sql);
 		return ($this->db->affected_rows() > 0) ? true : false;
 	}
 
