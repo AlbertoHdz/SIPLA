@@ -70,6 +70,7 @@
 		$(".invitarUsuario").on("click", function() {
 			var idR = $(this).attr('data-reunion');
 			var cu = $("#comboUsuarios"+idR).val();
+			console.log(idR);
 			$.ajax({
 				url:"<?php echo base_url();?>index.php/reunionUsuarioController/agregarInvitadoReunion",
 				type: "POST",
@@ -87,6 +88,29 @@
 				$("#invitadosReunion"+idR).collapse('hide');
 			});
 		});
+		
+		
+		$(".terminarReunion").on("click", function() {
+			var idRc = $(this).attr('data-reuniones');
+			console.log(idRc);
+			$.ajax({
+				url:"<?php echo base_url();?>index.php/reunionUsuarioController/cancelarReunion",
+				type: "GET",
+				data:{idReunion:idRc},
+				beforeSend: function(){
+					$("#modalLoading").modal('show');
+				}
+			}).done(function(data){
+				$("#modalLoading").modal('hide');
+				if(data){
+					swal('Ok','Reunión cancelada','success');
+				}else{
+					swal('Ups!','ha ocurrido un error','danger');
+				}
+				//$("#invitadosReunion"+idR).collapse('hide');
+			});
+		});
+		
 
 		$(document).off("click",".eliminarusuario");
 		$(document).on("click",".eliminarusuario",function(){
@@ -182,6 +206,17 @@
 						  ver invitados a reunion
 						</button>
 
+				
+						<?php
+						    	if($this->session->userdata('idRol') != 1){
+						    		?>
+						<button class="btn btn-primary verInvitadosReunion" type="button">
+						  Confirmar mi asistencia
+						</button>
+						<button class="btn btn-primary verInvitadosReunion" type="button">
+						  Establecer fecha y horario 
+						</button>
+						<?php }  ?>
 						<div class="collapse" id="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  <div class="well">
 						    <p>Lista de los usuario en esta reunion</p>
@@ -227,6 +262,20 @@
 						    		<button class="btn btn-primary extenderFechas" type="button" data-toggle="collapse" data-target="#rangoFechas<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
 									  Cambiar el rango de fechas
 									</button>
+									<button class="btn btn-danger " type="button" data-toggle="collapse" data-target="#terminarReunion<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="terminarReunion<?php echo $reunion['idReunion']; ?>">
+						  Terminar reunion
+						</button>
+						
+						<div class="collapse" id="terminarReunion<?php echo $reunion['idReunion']; ?>">
+									  	<div class="well">
+											<div class="form-inline">
+											  Esta seguro de querer terminar/cancelar la reunión
+											  
+											  <button type="button" class="btn btn-success terminarReunion" data-reuniones="<?php echo $reunion['idReunion']; ?>"> Sí </button>
+											</div>
+										</div>
+									</div>
+						
 									<div class="collapse" id="rangoFechas<?php echo $reunion['idReunion']; ?>">
 										  <div class="well">
 										    

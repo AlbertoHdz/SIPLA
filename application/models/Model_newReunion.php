@@ -46,5 +46,7 @@ class Model_newReunion extends CI_Model {
 			Where u.idUsuario ='.$idUsuario);
 		return $query->result_array();
 	}
+	
+	
 }
 ?>

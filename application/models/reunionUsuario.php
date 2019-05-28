@@ -12,6 +12,13 @@ class reunionUsuario extends CI_Model{
 		parent::__construct();
 	}
 
+	public function modificarEstatus($idReunion){
+		$sql = "UPDATE `reuniones` SET `estatus` = '0' where idReunion = ".$idReunion."";
+		$query = $this->db->query($sql);
+		echo $query;
+		return ($this->db->affected_rows() != 1) ? false : true;
+	}
+
 	public function agregarUsuario($idUsuario,$idReunion){
 		$sql = "INSERT INTO `relReunionUsuario` (`idReunion`, `idUsuario`,`confirma`) VALUES ('$idReunion', '$idUsuario','0');";
 		$query = $this->db->query($sql);
@@ -43,12 +50,14 @@ class reunionUsuario extends CI_Model{
 		return ($this->db->affected_rows() > 0) ? true : false;
 	}
 
+
 	public function confirmacion($idUsuario,$idReunion)
 	{
 		$sql = "UPDATE `relReunionUsuario` SET `confirma`=1 WHERE `idReunion`= $idReunion AND `idUsuario`= $idUsuario";
 		$this->db->query($sql);
 		return ($this->db->affected_rows() > 0) ? true : false;
 	}
+
 } 
 
 ?>
