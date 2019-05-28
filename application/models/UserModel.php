@@ -59,6 +59,20 @@ class UserModel extends CI_Model{
 		$query = $this->db->get('usuarios');
 		return $query->result_array();
 	}
+	public function consultar_rol($data){
+		$this->db->where('idRol', $data);
+		$query = $this->db->get('roles');
+
+		// Verificamos que se haya obtenido la información
+		if($query->num_rows() == 1)
+		{
+			return $query->row();
+		} else
+		{
+			return null;
+		}
+
+	}
 
 }
 

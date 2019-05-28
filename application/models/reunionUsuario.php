@@ -42,6 +42,13 @@ class reunionUsuario extends CI_Model{
 		$query = $this->db->query($sql);
 		return ($this->db->affected_rows() > 0) ? true : false;
 	}
+
+	public function confirmacion($idUsuario,$idReunion)
+	{
+		$sql = "UPDATE `relReunionUsuario` SET `confirma`=1 WHERE `idReunion`= $idReunion AND `idUsuario`= $idUsuario";
+		$this->db->query($sql);
+		return ($this->db->affected_rows() > 0) ? true : false;
+	}
 } 
 
 ?>

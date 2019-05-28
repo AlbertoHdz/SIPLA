@@ -40,9 +40,6 @@
         <?php } ?>
       </li>
       
-       <li class="nav-item">
-        <a class="nav-link" href="#">Agregar más...</a>
-      </li>
       <li>
         <div class="dropdown">
           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><?php

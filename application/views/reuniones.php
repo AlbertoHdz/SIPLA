@@ -127,6 +127,11 @@
 				  }
 				});
 		});
+		
+		$(document).off("click",".confirmarFechaReunion");
+		$(document).on("click",".confirmarFechaReunion",function(){
+			swal("clicked");
+		});
 	});
 </script>
 <div class="shadow bg-white col-md-10" style="margin: auto;">
@@ -176,16 +181,7 @@
 					    <button class="btn btn-primary verInvitadosReunion" type="button" data-toggle="collapse" data-target="#invitadosReunion<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  ver invitados a reunion
 						</button>
-						<?php
-						    	if($this->session->userdata('idRol') != 1){
-						    		?>
-						<button class="btn btn-primary verInvitadosReunion" type="button">
-						  Confirmar mi asistencia
-						</button>
-						<button class="btn btn-primary verInvitadosReunion" type="button">
-						  Establecer fecha y horario 
-						</button>
-						<?php }  ?>
+
 						<div class="collapse" id="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  <div class="well">
 						    <p>Lista de los usuario en esta reunion</p>
@@ -224,8 +220,10 @@
 					  		echo ".  Lugar: ";
 		    				echo $reunion['lugar'];
 
-		    				if($estatus == 1 and $this->session->userdata('idUsuario') == $reunion['idUsuario']){
+		    				if($estatus == 1 && $this->session->userdata('idUsuario') == $reunion['idUsuario']){
 		    					?>
+
+		    					<div>
 						    		<button class="btn btn-primary extenderFechas" type="button" data-toggle="collapse" data-target="#rangoFechas<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
 									  Cambiar el rango de fechas
 									</button>
@@ -235,18 +233,49 @@
 										    <?php echo form_open('newReunion/extenderFechas'); ?>
 											<div class="">
 												<h3>Cambiar rango de fechas</h3>
-												<label class="form-label" for="fechaInit">Fecha Inicio</label>
-												<input type="date" placeholder="Hora tentativa inicial" name="HoraInicial" id="HoraInit">
-												<label class="form-label" for="HoraInit">Hora inicial</label>
-												<input type="time" placeholder="Hora tentativa inicial" name="HoraInicial" id="HoraInit">
+												<label class="form-label" for="fechaInit<?php echo $reunion['idReunion']; ?>">Fecha Inicio</label>
+												<input type="date" class="form-control" placeholder="fecha tentativa inicial" name="fechaInicial" id="fechaInicial<?php echo $reunion['idReunion']; ?>">
+												<label class="form-label" for="HoraInit<?php echo $reunion['idReunion']; ?>">Hora inicial</label>
+												<input type="time" class="form-control" placeholder="Hora tentativa inicial" name="HoraInicial" id="HoraInit<?php echo $reunion['idReunion']; ?>">
 												<br>
-												<label class="form-label" for="fechaFinal">Fecha Final</label>
-												<input type="date" placeholder="Fecha tentativa Final" name="fechaFinal" id="fechaFinal">
+												<label class="form-label" for="fechaFinal<?php echo $reunion['idReunion']; ?>">Fecha Final</label>
+												<input type="date" class="form-control" placeholder="Fecha tentativa Final" name="fechaFinal" id="fechaFinal<?php echo $reunion['idReunion']; ?>">
 												<label class="form-label" for="HoraFinal">Hora Limite</label>
-												<input type="time" placeholder="Hora tentativa limite" name="HoraLimite" id="HoraLimite">
+												<input type="time" class="form-control" placeholder="Hora tentativa limite" name="HoraLimite" id="HoraLimite<?php echo $reunion['idReunion']; ?>">
 												<hr>
-												<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#modalInvitarUsuario" aria-expanded="false" aria-controls="">
+												<button class="btn btn-primary " type="button" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
 												  Actualizar Rango
+												</button>
+											</div>
+									    		
+										  </div>
+										</div>
+									  </div>
+						    		<?php
+		    				}else if(isset($reunion['confirmar'])) if($reunion['confirmar'] == 0){
+		    					?>
+		    					<div>
+		    					<button class="btn btn-primary confirmarFechaReunion" type="button" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+									  Confirmar asistencia
+									</button>
+						    		<button class="btn btn-primary fechaPropuesta" type="button" data-toggle="collapse" data-target="#fechaPropuesta<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+									  Establecer fecha/hora
+									</button>
+									<div class="collapse" id="fechaPropuesta<?php echo $reunion['idReunion']; ?>">
+										  <div class="well">
+										    
+										    <?php echo form_open('newReunion/fechaPropuesta'); ?>
+											<div class="">
+												<h3>Ingresa una fecha que si puedas</h3>
+												<label class="form-label" for="fechaPropuesta<?php echo $reunion['idReunion']; ?>">Fecha:</label>
+												<input type="date" class="form-control" placeholder="fecha tentativa" name="fechaPropuesta" id="fechaPropuesta<?php echo $reunion['idReunion']; ?>">
+												<label class="form-label" for="HoraPropuesta<?php echo $reunion['idReunion']; ?>">Hora:</label>
+												<input type="time" class="form-control" placeholder="Hora tentativa" name="HoraPropuesta" id="HoraPropuesta<?php echo $reunion['idReunion']; ?>">
+												<label class="form-label" for="lugarPropuesta<?php echo $reunion['idReunion']; ?>">Lugar</label>
+												<input class="form-control" name="lugarPropuesta" id="lugarPropuesta<?php echo $reunion['idReunion']; ?>" value="">
+												<hr>
+												<button class="btn btn-primary confirmarFechaReunion" type="button" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+												  Enviar fecha propuesta
 												</button>
 											</div>
 									    		
