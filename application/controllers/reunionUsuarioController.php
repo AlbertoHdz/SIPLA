@@ -43,6 +43,17 @@ class reunionUsuarioController extends CI_Controller
 		
 		//echo json_encode($exist);
 	}
+	
+	public function cancelarReunion(){
+		
+	if(!isset($_GET['idReunion'])){
+			echo "error, no se han recibido parametros";
+		}	
+	$idReunion = $_GET['idReunion'];
+	$consulta = $this->reunUs->modificarEstatus($idReunion);
+	echo $consulta;
+	
+	}
 
 	public function quitarUsuarioReunion()
 	{

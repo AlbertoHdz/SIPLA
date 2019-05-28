@@ -7,6 +7,7 @@ class newReunion extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Model_newReunion','reunion',true);
+		$this->load->helper('form');
 		if (!$this->session->has_userdata('isLogin')) 
 		{
 			// Regresar el login
@@ -50,6 +51,7 @@ class newReunion extends CI_Controller {
 		
           //echo("titulo: ".$titulo."lugar: ".$lugar."fecha: ".$fecha."hora: ".$hora."asunto: ".$asunto);
 	}
+	
 
 	public function listarReuniones(){
 		// Muestra el contenido
@@ -64,6 +66,9 @@ class newReunion extends CI_Controller {
 		$this->load->view('reuniones',$datos);
 		$this->load->view('footer');
 	}
+	
+	
+	
 
 
 }
