@@ -66,7 +66,9 @@ class newReunion extends CI_Controller {
 		$this->load->view('reuniones',$datos);
 		$this->load->view('footer');
 	}
-	
+	public function confirmar_asistencis(){
+		echo "hola mundo";
+	}
 	
 	
 

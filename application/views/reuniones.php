@@ -233,6 +233,38 @@
 					    <button class="btn btn-primary verInvitadosReunion" type="button" data-toggle="collapse" data-target="#invitadosReunion<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  ver invitados a reunion
 						</button>
+						<!-- modal confirmar Asistencia-->
+<?php
+						    	if($this->session->userdata('idRol') != 1){
+						    		?>							<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Confirmar mi asistencia
+</button>
+<?php } ?>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta Apunto de confirmar su asistencia a la reunión, esta seguro?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" value="">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+					
 
 						<div class="collapse" id="invitadosReunion<?php echo $reunion['idReunion']; ?>">
 						  <div class="well">
