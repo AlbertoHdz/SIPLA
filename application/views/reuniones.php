@@ -341,6 +341,9 @@
 		    					?>
 
 		    					<div>
+									<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#fijarFecha<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+									  Fijar fecha definitiva
+									</button>
 						    		<button class="btn btn-primary extenderFechas" type="button" data-toggle="collapse" data-target="#rangoFechas<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
 									  Cambiar el rango de fechas
 									</button>
@@ -361,7 +364,7 @@
 									<div class="collapse" id="rangoFechas<?php echo $reunion['idReunion']; ?>">
 										  <div class="well">
 										    
-										    <?php echo form_open('newReunion/extenderFechas'); ?>
+										    
 											<div class="">
 												<h3>Cambiar rango de fechas</h3>
 												<label class="form-label" for="fechaInit<?php echo $reunion['idReunion']; ?>">Fecha Inicio</label>
@@ -378,6 +381,26 @@
 												  Actualizar Rango
 												</button>
 											</div>
+									    		
+										  </div>
+										</div>
+
+
+										<div class="collapse" id="fijarFecha<?php echo $reunion['idReunion']; ?>">
+										  <div class="well">
+										    
+										  
+											<form action="<?php echo base_url();?>index.php/reunionUsuarioController/fijarFecha" method="POST">
+												<div class="">
+												<h3>Fijar fecha</h3>
+												<label class="form-label" for="fecha<?php echo $reunion['idReunion']; ?>">Fecha Definitiva</label>
+												<input type="date" class="form-control" placeholder="Fecha definitiva" name="fecha" id="fechaDef<?php echo $reunion['idReunion']; ?>" required>
+												<input type="text" name="idReunion" value="<?php echo $reunion['idReunion']; ?>" required hidden>
+												<button class="btn btn-primary " type="submit" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+												  Guardar
+												</button>
+											</div>
+											</form>
 									    		
 										  </div>
 										</div>

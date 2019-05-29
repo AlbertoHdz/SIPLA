@@ -68,6 +68,10 @@ class reunionUsuarioController extends CI_Controller
 		echo $hecho;
 	}
 
+	public function fijarFecha(){
+		$result = $this->reunUs->setFecha();
+		redirect("newReunion/listarReuniones");
+	}
 }
 
 ?>

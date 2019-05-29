@@ -19,6 +19,14 @@ class reunionUsuario extends CI_Model{
 		return ($this->db->affected_rows() != 1) ? false : true;
 	}
 
+	public function setFecha(){
+		$fecha = $this->input->post("fecha");
+		$idReunion = $this->input->post("idReunion");
+		$sql = "UPDATE `reuniones` SET `fecha` = '$fecha' where idReunion = ".$idReunion."";
+		$query = $this->db->query($sql);
+		return ($this->db->affected_rows() != 1) ? false : true;
+	}
+
 	public function agregarUsuario($idUsuario,$idReunion){
 		$sql = "INSERT INTO `relReunionUsuario` (`idReunion`, `idUsuario`,`confirma`) VALUES ('$idReunion', '$idUsuario','0');";
 		$query = $this->db->query($sql);
