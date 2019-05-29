@@ -48,5 +48,27 @@ class propuestasController extends CI_Controller{
 			echo false;
 		}
 	}
+
+	public function extenderRangoFechas()
+	{
+		if(!isset($_POST['idReunion'])){
+			echo "Error, acceso denegado";		
+			return "";
+		}
+		$idReunion = $_POST['idReunion'];
+		$fechaInicial = $_POST['fechaInicial'];
+		$horaInicial = $_POST['horaInicial'];
+		$fechaFinal = $_POST['fechaFinal'];
+		$horaFinal = $_POST['horaFinal'];
+
+		$existe = $this->propModel->existeRangoFechas($idReunion);
+		if($existe){
+			$upt = $this->propModel->extenderRangoFechas($idReunion,$fechaInicial,$horaInicial,$fechaFinal,$horaFinal);
+			echo $upt;
+		}else{
+			$upt = $this->propModel->agregarRangoFechas($idReunion,$fechaInicial,$horaInicial,$fechaFinal,$horaFinal);
+			echo $upt;
+		}
+	}
 }
 ?>

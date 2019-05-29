@@ -34,5 +34,23 @@ class propuestasModel extends CI_Model{
 		$this->db->query($sql);
 		return $this->db->affected_rows() >= 1 ? true : false;
 	}
+
+	public function existeRangoFechas($idReunion){
+		$sql = "SELECT COUNT(*) AS 'existe' FROM `rangoFechas` WHERE idReunion = $idReunion";
+		$query = $this->db->query($sql);
+		return $query->row()->existe;
+	}
+
+	public function extenderRangoFechas($idReunion,$fechaInicial,$horaInicial,$fechaFinal,$horaFinal){
+		$sql = "UPDATE `rangoFechas` SET `fechaInicial` = '$fechaInicial', `horaInicial` = '$horaInicial', `fechaFinal` = '$fechaFinal', `horaFinal` = '$horaFinal' WHERE `rangoFechas`.`idReunion` = ".$idReunion;
+		$this->db->query($sql);
+		return $this->db->affected_rows() >= 1 ? true : false;
+	}
+
+	public function agregarRangoFechas($idReunion,$fechaInicial,$horaInicial,$fechaFinal,$horaFinal){
+		$sql = "INSERT INTO `rangoFechas` (`idRangoFechas`, `idReunion`, `fechaInicial`, `horaInicial`, `fechaFinal`, `horaFinal`) VALUES (NULL, '$idReunion', '$fechaInicial', '$horaInicial', '$fechaFinal', '$horaFinal')";
+		$this->db->query($sql);
+		return $this->db->affected_rows() >= 1 ? true : false;
+	}
 }
 ?>

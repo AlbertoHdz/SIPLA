@@ -184,7 +184,40 @@
 		  		$("#btnAsistencia"+idReunion).hide();
 			});
 		});
+
+		$(document).off('click','.actualizarRangoFechas');
+		$(document).on('click','.actualizarRangoFechas',function(){
+			var idReunion = $(this).attr('data-reunion');
+			var fechaI = $("#fechaInicial"+idReunion).val();
+			var horaI = $("#HoraInit"+idReunion).val();
+			var fechaF = $("#fechaFinal"+idReunion).val();
+			var horaF = $("#HoraLimite"+idReunion).val();
+			if(fechaI == "" || horaI == "" || fechaF == "" || horaF == ""){
+				swal("OPS!","rellene todos los campos","warning");
+				return false;
+			}
+			$.ajax({
+				url: "<?php echo base_url();?>index.php/propuestasController/extenderRangoFechas",
+				data:{idReunion:idReunion,fechaInicial:fechaI,horaInicial:horaI,fechaFinal:fechaF,horaFinal:horaF},
+				type:"POST",
+				beforeSend: function(){
+					$("#modalLoading").modal('show');
+				}
+			}).done(function(data){
+				$("#modalLoading").modal('hide');
+				if(data == 1){
+					swal("Excelente","se ha actualizado el rango de fechas", "success");
+				}else{
+					swal("UPS!","ha ocurrido un error","danger");
+				}
+			});
+			//swal("datos: "+fechaI+" "+horaI+" "+fechaF+" "+horaF);
+
+		});
+
 	});
+
+	
 </script>
 <div class="shadow bg-white col-md-10" style="margin: auto;">
   	<div class="container" style="padding-bottom: 30px;">
@@ -341,7 +374,7 @@
 												<label class="form-label" for="HoraFinal">Hora Limite</label>
 												<input type="time" class="form-control" placeholder="Hora tentativa limite" name="HoraLimite" id="HoraLimite<?php echo $reunion['idReunion']; ?>">
 												<hr>
-												<button class="btn btn-primary " type="button" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
+												<button class="btn btn-primary actualizarRangoFechas" type="button" data-toggle="collapse" data-reunion="<?php echo $reunion['idReunion']; ?>" aria-expanded="false" aria-controls="">
 												  Actualizar Rango
 												</button>
 											</div>
